@@ -1,3 +1,5 @@
+using MeuLivroDeReceitas.Application.UseCases.Usuario.Registrar;
+using MeuLivroDeReceitas.Comunicacao.Requisicoes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeuLivroDeReceitas.Api.Controllers
@@ -6,28 +8,18 @@ namespace MeuLivroDeReceitas.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get([FromServices] IRegistrarUsuarioUseCase useCase)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var resposta = await useCase.Executar(new RequisicaoRegistrarUsuarioJson
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                Email = "matheus@gmail.com",
+                Nome = "Matheus",
+                Senha = "123321da",
+                Telefone = "16 9 9244-8192"
+            });
+            
+            return Ok(resposta);
         }
-    }
+    };
 }
