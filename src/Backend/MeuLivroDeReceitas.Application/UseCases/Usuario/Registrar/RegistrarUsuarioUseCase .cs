@@ -34,7 +34,7 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
 
         var entidade = _mapper.Map<Domain.Entidades.Usuario>(requisicao);
 
-        entidade.Senha = _encriptadorDeSenha.Criptografar(entidade.Senha) ;
+        entidade.Senha = _encriptadorDeSenha.Criptografar(requisicao.Senha);
 
         await _repositorio.Adicionar(entidade);
 
