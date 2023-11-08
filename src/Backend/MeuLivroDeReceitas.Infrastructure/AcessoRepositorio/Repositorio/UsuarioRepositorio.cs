@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MeuLivroDeReceitas.Infrastructure.AcessoRepositorio.Repositorio;
 
-public class UsuarioRepositorio : IUsuarioReadOnlyRepositorio, IUsuarioWriteOnlyRepositorio, IUpdateOnlyRepositorio
+public class UsuarioRepositorio : IUsuarioReadOnlyRepositorio, IUsuarioWriteOnlyRepositorio, IUsuarioUpdateOnlyRepositorio
 {
     private readonly MeuLivroDeReceitasContext _contexto;
     public UsuarioRepositorio(MeuLivroDeReceitasContext context)
@@ -21,10 +21,21 @@ public class UsuarioRepositorio : IUsuarioReadOnlyRepositorio, IUsuarioWriteOnly
         return await _contexto.Usuarios.AnyAsync(c => c.Email.Equals(email));
     }
 
+    public async Task<Usuario> RecuperarPorEmail(string email)
+    {
+        return await _contexto.Usuarios.AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Email.Equals(email));
+    }
+
     public async Task<Usuario> RecuperarPorEmailSenha(string email, string senha)
     {
         return await _contexto.Usuarios.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Email.Equals(email) && c.Senha.Equals(senha));
+    }
+
+    public async Task<Usuario> RecuperarPorId(long id)
+    {
+        return await _contexto.Usuarios.FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public void Update(Usuario usuario)
