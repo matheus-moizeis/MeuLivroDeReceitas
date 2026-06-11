@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MyRecipeBook.Api/MyRecipeBook.Api.csproj" Id="a4f6dd6a-d4cf-443f-b744-d465f9e103cf" />
+    <Project Path="src/MyRecipeBook.Application/MyRecipeBook.Application.csproj" Id="24b9df99-0427-4f3f-bf74-b3c1e2c71ceb" />
+    <Project Path="src/MyRecipeBook.Domain/MyRecipeBook.Domain.csproj" Id="62d01b38-f6ca-433f-a3d9-4ae9722dd7ae" />
+    <Project Path="src/MyRecipeBook.Infrastructure/MyRecipeBook.Infrastructure.csproj" Id="9ff19c28-6c46-4855-a26b-1e9f0c4b9ada" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/MyRecipeBook.Communication/MyRecipeBook.Communication.csproj" Id="e53c7bc7-5bd0-4cf0-8630-011d3af23013" />
+    <Project Path="src/MyRecipeBook.Exception/MyRecipeBook.Exception.csproj" Id="7909240e-d1e6-4059-a998-4bc553d72b2d" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
